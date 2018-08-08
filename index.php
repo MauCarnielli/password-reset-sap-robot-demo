@@ -11,11 +11,11 @@ if($method == 'POST'){
 	
 	if($id != NULL){
 		$response->speech = $id;
-		$response->displayText = $id;
+		$response->fulfillmentText = $id;
 		$response->source = 'webhook';
 	}else{
 		$response->speech = 'Nao tem ID nisso ai';
-		$response->displayText = 'Mesma coisa do Speech';
+		$response->fulfillmentText = 'Mesma coisa do Speech';
 		$response->source = 'webhook';
 	}
 	
