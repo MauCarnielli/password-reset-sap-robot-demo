@@ -12,11 +12,11 @@ if($method == 'POST'){
 	if($id != NULL){
 		$response->speech = $id;
 		$response->displayText = $id;
-		$response->source = 'Gzus';
+		$response->source = 'webhook';
 	}else{
-		$response->speech = 'Não tem ID nisso ai';
+		$response->speech = 'Nao tem ID nisso ai';
 		$response->displayText = 'Mesma coisa do Speech';
-		$response->source = 'Gzus';
+		$response->source = 'webhook';
 	}
 	
 	echo json_encode($response);
