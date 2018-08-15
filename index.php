@@ -11,7 +11,7 @@ if($method == 'POST'){
 	
 	if($id != NULL){
 		$response->speech = $id;
-		$response->fulfillmentText = $id;
+		$response->displayText = $id;
 		$response->source = 'webhook';
 	}else{
 		$response->speech = 'Nao tem ID nisso ai';
