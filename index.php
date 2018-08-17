@@ -27,6 +27,6 @@ function enviaPost{
 	var_dump($result);
 }
 
-recebeJson();
+echo "hey hey hey";
 
 ?>
