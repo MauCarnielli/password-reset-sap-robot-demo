@@ -40,7 +40,7 @@
 		echo json_encode($response);
 		
 	}
-	if($method == 'GET'){
+	else if($method == 'GET'){
 			$reponse->speech = "Oi Leandro";
 			$reponse->status = "Deu certo!";
 		}
