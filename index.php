@@ -12,11 +12,12 @@
 		$options = array(
 		  'http' => array(
 			'method'  => 'POST',
-			'content' => http_build_query($data),
+			'header' => 'Content-Type: text/plain',
+			'content' => http_build_query($data)
 		  ),
 		);
 		$context  = stream_context_create($options);
-		$result = file_get_contents($url, false, $context);
+		$result = file_get_contents($url, true, $context);
 		
 		
 		$response = new \stdClass();
