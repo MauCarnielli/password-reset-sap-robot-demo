@@ -29,7 +29,7 @@
 			$response->displayText = $id;
 			$response->source = 'webhook';
 		}
-		if($method == 'GET'){
+		else if($method == 'GET'){
 			$reponse->speech = "Oi Leandro";
 			$reponse->status = "Deu certo!";
 		}
