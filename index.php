@@ -6,23 +6,25 @@
 		$json = json_decode($requestBody);
 		$id = $json->queryResult->parameters->id;
 		
-		
-		$url = 'https://my-php-tester.herokuapp.com/';
-		$data = array('id' => $id, 'source' => 'password-reset-sap-robot-demo');
-		$options = array(
-		  'http' => array(
-			'method'  => 'POST',
-			'header' => 'Content-Type: text/plain',
-			'content' => http_build_query($data)
-		  ),
-		);
-		$context  = stream_context_create($options);
-		$result = file_get_contents($url, true, $context);
-		
-		
-		$response = new \stdClass();
-		
 		if($id != NULL){
+			$url = 'https://my-php-tester.herokuapp.com/';
+			$data = array('id' => $id, 'source' => 'password-reset-sap-robot-demo');
+			$options = array(
+			  'http' => array(
+				'method'  => 'POST',
+				'header' => 'Content-Type: text/plain',
+				'content' => http_build_query($data)
+			  ),
+			);
+			$context  = stream_context_create($options);
+			
+			
+			$result = file_get_contents($url, true, $context);
+			echo json_encode($result);
+			var_dump($result);
+			
+			$response = new \stdClass();
+			
 			$response->speech = $id;
 			$response->displayText = $id;
 			$response->source = 'webhook';
@@ -32,8 +34,6 @@
 			$response->source = 'webhook';
 		}
 		
-	
-		echo json_encode($result);
 		echo json_encode($response);
 		
 	}else{
