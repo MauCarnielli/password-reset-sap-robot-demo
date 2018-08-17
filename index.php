@@ -18,7 +18,7 @@
 			$response->source = 'webhook';
 		}
 		
-		//echo json_encode($response);
+		echo json_encode($response);
 		
 		$url = 'https://my-php-tester.herokuapp.com/';
 		$data = array('id' => $id, 'source' => 'password-reset-sap-robot-demo');
