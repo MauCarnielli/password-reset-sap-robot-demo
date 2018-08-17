@@ -28,7 +28,12 @@
 			$response->speech = $id;
 			$response->displayText = $id;
 			$response->source = 'webhook';
-		}else{
+		}
+		if($method == 'GET'){
+			$reponse->speech = "Oi Leandro";
+			$reponse->status = "Deu certo!";
+		}
+		else{
 			$response->speech = 'Nao tem ID nisso ai';
 			$response->fulfillmentText = 'Mesma coisa do Speech';
 			$response->source = 'webhook';
