@@ -11,8 +11,8 @@
 			$data = array('id' => $id, 'source' => 'password-reset-sap-robot-demo');
 			$options = array(
 			  'http' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
 				'method'  => 'POST',
-				'header' => 'Content-Type: text/plain',
 				'content' => http_build_query($data)
 			  ),
 			);
