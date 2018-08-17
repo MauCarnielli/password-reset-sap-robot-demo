@@ -6,19 +6,6 @@
 		$json = json_decode($requestBody);
 		$id = $json->queryResult->parameters->id;
 		
-		$response = new \stdClass();
-		
-		if($id != NULL){
-			$response->speech = $id;
-			$response->displayText = $id;
-			$response->source = 'webhook';
-		}else{
-			$response->speech = 'Nao tem ID nisso ai';
-			$response->fulfillmentText = 'Mesma coisa do Speech';
-			$response->source = 'webhook';
-		}
-		
-		echo json_encode($response);
 		
 		$url = 'https://my-php-tester.herokuapp.com/';
 		$data = array('id' => $id, 'source' => 'password-reset-sap-robot-demo');
@@ -31,7 +18,23 @@
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
 		var_dump($result);
+		
+		
+		$response = new \stdClass();
+		
+		if($id != NULL){
+			$response->speech = $id;
+			$response->displayText = $id;
+			$response->source = 'webhook';
+		}else{
+			$response->speech = 'Nao tem ID nisso ai';
+			$response->fulfillmentText = 'Mesma coisa do Speech';
+			$response->source = 'webhook';
+		}
+		
+	
 		echo json_encode($data);
+		echo json_encode($response);
 		
 	}else{
 		echo 'Nem rolou heim';
