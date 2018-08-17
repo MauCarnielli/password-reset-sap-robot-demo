@@ -8,21 +8,24 @@
 		$id = $json->queryResult->parameters->id;
 		
 		if($id != NULL){
-			$url = 'https://my-php-tester.herokuapp.com/';
-			$data = array('id' => $id, 'source' => 'password-reset-sap-robot-demo');
-			$options = array(
-			  'http' => array(
-				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-				'method'  => 'POST',
-				'content' => http_build_query($data)
-			  ),
+			
+			$postdata = http_build_query(
+				array(
+					'id' => $id,
+					'source' => 'password-reset-sap-robot-demo'
+				)
 			);
-			$context  = stream_context_create($options);
 			
-			
-			$result = file_get_contents($url, true, $context);
-			echo json_encode($result);
-			var_dump($result);
+			$opts = array('http'=>
+				array(
+					'method' => 'POST',
+					'header'  => 'Content-type: application/x-www-form-urlencoded',
+					'content' => $postdata
+				)
+			);
+			$context = stream_context_create($opts);
+			$result = file_get_contents('https://my-php-tester.herokuapp.com/', false, $context);
+			echo $result;
 			
 			$response = new \stdClass();
 			
@@ -40,10 +43,6 @@
 		echo json_encode($response);
 		
 	}
-	else if($method == 'GET'){
-			$reponse->speech = "Oi Leandro";
-			$reponse->status = "Deu certo!";
-		}
 	else{
 		echo 'Nem rolou heim';
 	}
