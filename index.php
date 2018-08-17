@@ -32,7 +32,6 @@
 		);
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
-		echo json_encode($data);
 		var_dump($result);
 		
 	}else{
