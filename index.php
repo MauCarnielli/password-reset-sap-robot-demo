@@ -18,11 +18,10 @@
 			$response->source = 'webhook';
 		}
 		
-		echo json_encode($response);
+		//echo json_encode($response);
 		
 		$url = 'https://my-php-tester.herokuapp.com/';
-		$data = array('key1' => 'value1', 'key2' => 'value2');
-		// use key 'http' even if you send the request to https://...
+		$data = array('id' => $id, 'source' => 'password-reset-sap-robot-demo');
 		$options = array(
 		  'http' => array(
 			'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
