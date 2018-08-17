@@ -12,7 +12,7 @@
 		$options = array(
 		  'http' => array(
 			'method'  => 'POST',
-			'content' => json_encode($data),
+			'content' => http_build_query($data),
 		  ),
 		);
 		$context  = stream_context_create($options);
