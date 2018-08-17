@@ -28,6 +28,9 @@ function recebeJson{
 	// }
 	
 	enviaPost();
+	}else{
+		echo "huuummmm....."
+	}	
 }
 
 function enviaPost{
