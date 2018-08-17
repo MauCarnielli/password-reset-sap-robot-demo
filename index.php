@@ -49,6 +49,6 @@ function enviaPost{
 	var_dump($result);
 }
 
-
+recebeJson();
 
 ?>
