@@ -1,4 +1,5 @@
 <?php
+
 	$method = $_SERVER['REQUEST_METHOD'];
 
 	if($method == 'POST'){
@@ -29,10 +30,7 @@
 			$response->displayText = $id;
 			$response->source = 'webhook';
 		}
-		else if($method == 'GET'){
-			$reponse->speech = "Oi Leandro";
-			$reponse->status = "Deu certo!";
-		}
+		
 		else{
 			$response->speech = 'Nao tem ID nisso ai';
 			$response->fulfillmentText = 'Mesma coisa do Speech';
@@ -41,7 +39,12 @@
 		
 		echo json_encode($response);
 		
-	}else{
+	}
+	if($method == 'GET'){
+			$reponse->speech = "Oi Leandro";
+			$reponse->status = "Deu certo!";
+		}
+	else{
 		echo 'Nem rolou heim';
 	}
 ?>
