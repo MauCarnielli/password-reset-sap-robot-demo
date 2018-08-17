@@ -17,7 +17,6 @@
 		);
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
-		var_dump($result);
 		
 		
 		$response = new \stdClass();
@@ -33,7 +32,7 @@
 		}
 		
 	
-		echo json_encode($data);
+		echo json_encode($result);
 		echo json_encode($response);
 		
 	}else{
