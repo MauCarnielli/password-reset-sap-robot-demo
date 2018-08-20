@@ -9,7 +9,7 @@
 		
 		if($id != NULL){
 			
-			$postdata = http_build_query(
+			$postdata = array(
 				array(
 					'id' => $id,
 					'source' => 'password-reset-sap-robot-demo'
@@ -20,7 +20,7 @@
 				array(
 					'method' => 'POST',
 					'header'  => 'Content-type: application/x-www-form-urlencoded',
-					'content' => $postdata
+					'content' => json_encode($postdata);
 				)
 			);
 			$context = stream_context_create($opts);
