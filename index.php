@@ -14,18 +14,15 @@
 				'source' => 'password-reset-sap-robot-demo'
 			));
 			
-			$ch = curl_init('https://my-php-tester.herokuapp.com/');
-			curl_setopt_array($ch, array(
-				CURLOPT_POST => TRUE,
-				CURLOPT_RETURNTRANSFER => TRUE,
-				CURLOPT_HTTPHEADER => array(
-					'Content-Type: application/json\r\n'
-				),
-				CURLOPT_POSTFIELDS => $postdata
+			$context = stream_context_create(array(
+				'http'=>array(
+					'method' => 'POST',
+					'header' => 'Content-Type: application/json\r\n',
+					'content' => $postdata
+				)
 			));
-			$request = curl_exec($ch);
-			echo $request;
-			echo $postdata;
+			$req = file_get_contents('https://my-php-tester.herokuapp.com/', FALSE, $context);
+				
 			
 			$response = new \stdClass();
 			
