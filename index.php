@@ -10,10 +10,8 @@
 		if($id != NULL){
 			
 			$postdata = array(
-				array(
-					'id' => $id,
-					'source' => 'password-reset-sap-robot-demo'
-				)
+				'id' => $id,
+				'source' => 'password-reset-sap-robot-demo'
 			);
 			
 			$ch = curl_init('https://my-php-tester.herokuapp.com/');
