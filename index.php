@@ -22,7 +22,7 @@
 				)
 			));
 			$req = file_get_contents('https://my-php-tester.herokuapp.com/', FALSE, $context);
-				
+			echo $req;	
 			
 			$response = new \stdClass();
 			
