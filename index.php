@@ -19,8 +19,8 @@
 			$opts = array('http'=>
 				array(
 					'method' => 'POST',
-					'header'  => 'Content-type: application/x-www-form-urlencoded',
-					'content' => json_encode($postdata);
+					'header'  => 'Content-type: application/json\r\n',
+					'content' => json_encode($postdata)
 				)
 			);
 			$context = stream_context_create($opts);
