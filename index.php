@@ -25,11 +25,11 @@
 			);
 			$context = stream_context_create($opts);
 			$result = file_get_contents('https://my-php-tester.herokuapp.com/', false, $context);
+			echo $result;
 			
 			$response = new \stdClass();
 			
 			$response->fulfillmentText = $id;
-			// $response->fulfillmentText->fulfillmentMessages->text->text = $id;
 			$response->source = 'webhook';
 		}
 		
