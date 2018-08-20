@@ -9,28 +9,28 @@
 		
 		if($id != NULL){
 			
-			// $postdata = http_build_query(
-				// array(
-					// 'id' => $id,
-					// 'source' => 'password-reset-sap-robot-demo'
-				// )
-			// );
+			$postdata = http_build_query(
+				array(
+					'id' => $id,
+					'source' => 'password-reset-sap-robot-demo'
+				)
+			);
 			
-			// $opts = array('http'=>
-				// array(
-					// 'method' => 'POST',
-					// 'header'  => 'Content-type: application/x-www-form-urlencoded',
-					// 'content' => $postdata
-				// )
-			// );
-			// $context = stream_context_create($opts);
-			// $result = file_get_contents('https://my-php-tester.herokuapp.com/', false, $context);
-			// echo $result;
+			$opts = array('http'=>
+				array(
+					'method' => 'POST',
+					'header'  => 'Content-type: application/x-www-form-urlencoded',
+					'content' => $postdata
+				)
+			);
+			$context = stream_context_create($opts);
+			$result = file_get_contents('https://my-php-tester.herokuapp.com/', false, $context);
+			echo $result;
 			
 			$response = new \stdClass();
 			
 			$response->fulfillmentText = $id;
-			$response->fulfillmentText->fulfillmentMessages->text->text = $id;
+			// $response->fulfillmentText->fulfillmentMessages->text->text = $id;
 			$response->source = 'webhook';
 		}
 		
