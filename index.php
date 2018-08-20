@@ -9,10 +9,10 @@
 		
 		if($id != NULL){
 			
-			$postdata = array(
+			$postdata = json_encode(array(
 				'id' => $id,
 				'source' => 'password-reset-sap-robot-demo'
-			);
+			));
 			
 			$ch = curl_init('https://my-php-tester.herokuapp.com/');
 			curl_setopt_array($ch, array(
@@ -21,10 +21,11 @@
 				CURLOPT_HTTPHEADER => array(
 					'Content-Type: application/json\r\n'
 				),
-				CURLOPT_POSTFIELDS => json_encode($postdata)
+				CURLOPT_POSTFIELDS => $postdata
 			));
 			$request = curl_exec($ch);
 			echo $request;
+			echo $postdata;
 			
 			$response = new \stdClass();
 			
