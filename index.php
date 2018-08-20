@@ -26,7 +26,7 @@
 				CURLOPT_POSTFIELDS => json_encode($postdata)
 			));
 			$request = curl_exec($ch);
-			echo json_encode($postdata);
+			echo $request;
 			
 			$response = new \stdClass();
 			
