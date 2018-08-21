@@ -21,7 +21,7 @@
 				'http'=>array(
 					'method' => 'POST', //Neste caso, mandamos uma requisição do tipo POST
 					'header' => 'Content-Type: application/json\r\n', //Qual o conteúdo que está sendo mandado, no caso um JSON
-					'content' => json_encode($jobData); //O conteúdo, codificado em JSON
+					'content' => json_encode($jobData) //O conteúdo, codificado em JSON
 				)
 			)); 
 			
