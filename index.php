@@ -17,27 +17,27 @@
 			)); // Este é o conteúdo do JSON da nova requisição que vai ser mandada para o Orchestrator para iniciar o Job
 				// Referência: https://orchestrator.uipath.com/v2018.2/reference#section-starting-a-job
 			
-			$context = stream_context_create(array(
+			$context = stream_context_create(array( //Este é o contexto, ou seja, toda a informação que vai ser passada pela requisição
 				'http'=>array(
 					'method' => 'POST', //Neste caso, mandamos uma requisição do tipo POST
 					'header' => 'Content-Type: application/json\r\n', //Qual o conteúdo que está sendo mandado, no caso um JSON
 					'content' => $orchestratorData //O conteúdo
 				)
-			)); //Este é o contexto, ou seja, toda a informação que vai ser passada pela requisição
+			)); 
 			
 			$req = file_get_contents('url_do_orchestrator', FALSE, $context); //Envia a requisição para o link e armazena na variável a resposta.
 			
-			$responseDialog = array(
+			$responseDialog = array( //Esta variável é a resposta final, ou seja, a que vai para o DialogFlow. A resposta que o usuário vai obter após o processo.
 				'fulfillmentText' => 'ID Recebido é -> '.$id, //Aqui vai a mensagem que irá aparecer na conversa com o Chatbot
 				'source' => 'webhook'
-			);//Esta variável é a resposta final, ou seja, a que vai para o DialogFlow. A resposta que o usuário vai obter após o processo.
+			);
 		}
 		
 		else{
-			$responseDialog = array(
+			$responseDialog = array( //Caso o ID não seja alcançado.
 				'fulfillmentText' => 'ID não recebido',
 				'source' => 'webhook'
-			); //Caso o ID não seja alcançado.
+			); 
 		}
 		
 		echo json_encode($responseDialog); //Codifica para JSON e manda para o DialogFlow.
