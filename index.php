@@ -11,7 +11,7 @@
 				'startInfo'=>array(
 					'ReleaseKey' => 'Inserir chave do processo aqui',
 					'Strategy' => 'All',
-					'RobotIds' => array(),
+					'RobotIds' => '[]',
 					'NoOfRobots' => 0
 				)
 			);
