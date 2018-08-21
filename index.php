@@ -7,14 +7,14 @@
 		
 		if($id != NULL){
 			
-			$jobData = array(
+			$jobData = array( // Conteúdo do POST a ser mandado para o Orchestrator, afim de começar um Job
 				'startInfo'=>array(
 					'ReleaseKey' => 'Inserir chave do processo aqui',
 					'Strategy' => 'All',
 					'RobotIds' => '[]',
 					'NoOfRobots' => 0
 				)
-			);
+			); // Referência -> https://orchestrator.uipath.com/v2018.2/reference#section-starting-a-job
 				
 			
 			$context = stream_context_create(array( //Este é o contexto, ou seja, toda a informação que vai ser passada pela requisição
