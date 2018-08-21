@@ -1,42 +1,41 @@
 <?php
-	$method = $_SERVER['REQUEST_METHOD']; //Verifica qual o método da requisição
-
+	$method = $_SERVER['REQUEST_METHOD']; //Verifica qual o mÃ©todo da requisiÃ§Ã£o
 	if($method == 'POST'){ 
-		$requestBody = file_get_contents('php://input'); //Recebe o conteúdo em JSON da requisição
+		$requestBody = file_get_contents('php://input'); //Recebe o conteÃºdo em JSON da requisiÃ§Ã£o
 		$json = json_decode($requestBody); //Decodifica de JSON para texto	
-		$id = $json->queryResult->parameters->id; //Extrai apenas o ID, seguindo a estrutura de arrays que está no texto.
+		$id = $json->queryResult->parameters->id; //Extrai apenas o ID, seguindo a estrutura de arrays que estÃ¡ no texto.
 		
 		if($id != NULL){
 			
-			$orchestratorData = json_encode( // Este é o conteúdo do JSON da nova requisição que vai ser mandada para o Orchestrator para iniciar o Job
+			$orchestratorData = json_encode( // Este Ã© o conteÃºdo do JSON da nova requisiÃ§Ã£o que vai ser mandada para o Orchestrator para iniciar o Job
 				'startInfo' => array(
 					"ReleaseKey": "Insira a chave aqui",
 					"Strategy": "All",
 					"RobotIds": [],
-					"NoOfRobots": 0 // Referência: https://orchestrator.uipath.com/v2018.2/reference#section-starting-a-job
+					"NoOfRobots": 0 // ReferÃªncia: https://orchestrator.uipath.com/v2018.2/reference#section-starting-a-job
 				)
 			); 
 				
 			
-			$context = stream_context_create(array( //Este é o contexto, ou seja, toda a informação que vai ser passada pela requisição
+			$context = stream_context_create(array( //Este Ã© o contexto, ou seja, toda a informaÃ§Ã£o que vai ser passada pela requisiÃ§Ã£o
 				'http'=>array(
-					'method' => 'POST', //Neste caso, mandamos uma requisição do tipo POST
-					'header' => 'Content-Type: application/json\r\n', //Qual o conteúdo que está sendo mandado, no caso um JSON
-					'content' => $orchestratorData //O conteúdo
+					'method' => 'POST', //Neste caso, mandamos uma requisiÃ§Ã£o do tipo POST
+					'header' => 'Content-Type: application/json\r\n', //Qual o conteÃºdo que estÃ¡ sendo mandado, no caso um JSON
+					'content' => $orchestratorData //O conteÃºdo
 				)
 			)); 
 			
-			$req = file_get_contents('url_do_orchestrator', FALSE, $context); //Envia a requisição para o link e armazena na variável a resposta.
+			//$req = file_get_contents('url_do_orchestrator', FALSE, $context); //Envia a requisiÃ§Ã£o para o link e armazena na variÃ¡vel a resposta.
 			
-			$responseDialog = array( //Esta variável é a resposta final, ou seja, a que vai para o DialogFlow. A resposta que o usuário vai obter após o processo.
-				'fulfillmentText' => 'ID Recebido é -> '.$id, //Aqui vai a mensagem que irá aparecer na conversa com o Chatbot
+			$responseDialog = array( //Esta variÃ¡vel Ã© a resposta final, ou seja, a que vai para o DialogFlow. A resposta que o usuÃ¡rio vai obter apÃ³s o processo.
+				'fulfillmentText' => 'ID Recebido Ã© -> '.$id, //Aqui vai a mensagem que irÃ¡ aparecer na conversa com o Chatbot
 				'source' => 'webhook'
 			);
 		}
 		
 		else{
-			$responseDialog = array( //Caso o ID não seja alcançado.
-				'fulfillmentText' => 'ID não recebido',
+			$responseDialog = array( //Caso o ID nÃ£o seja alcanÃ§ado.
+				'fulfillmentText' => 'ID nÃ£o recebido',
 				'source' => 'webhook'
 			); 
 		}
@@ -45,6 +44,6 @@
 		
 	}
 	else{
-		echo 'Não foi recebido uma requisição do tipo POST';
+		echo 'NÃ£o foi recebido uma requisiÃ§Ã£o do tipo POST';
 	}
 ?>
