@@ -40,7 +40,8 @@
 			); 
 		}
 		
-		echo json_encode($responseDialog); //Codifica para JSON e manda para o DialogFlow.
+		echo $requestBody;
+		//echo json_encode($responseDialog); //Codifica para JSON e manda para o DialogFlow.
 		
 	}
 	else{
