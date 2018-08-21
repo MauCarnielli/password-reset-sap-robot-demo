@@ -17,13 +17,13 @@
 			// ); 
 				
 			
-			// $context = stream_context_create(array( //Este é o contexto, ou seja, toda a informação que vai ser passada pela requisição
-				// 'http'=>array(
-					// 'method' => 'POST', //Neste caso, mandamos uma requisição do tipo POST
-					// 'header' => 'Content-Type: application/json\r\n', //Qual o conteúdo que está sendo mandado, no caso um JSON
-					// 'content' => $orchestratorData //O conteúdo
-				// )
-			// )); 
+			$context = stream_context_create(array( //Este é o contexto, ou seja, toda a informação que vai ser passada pela requisição
+				'http'=>array(
+					'method' => 'POST', //Neste caso, mandamos uma requisição do tipo POST
+					'header' => 'Content-Type: application/json\r\n', //Qual o conteúdo que está sendo mandado, no caso um JSON
+					'content' => $orchestratorData //O conteúdo
+				)
+			)); 
 			
 			$req = file_get_contents('url_do_orchestrator', FALSE, $context); //Envia a requisição para o link e armazena na variável a resposta.
 			
