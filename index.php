@@ -1,44 +1,45 @@
 <?php
+	$method = $_SERVER['REQUEST_METHOD']; //Verifica qual o método da requisição
 
-	$method = $_SERVER['REQUEST_METHOD'];
-
-	if($method == 'POST'){
-		$requestBody = file_get_contents('php://input');
-		$json = json_decode($requestBody);
-		$id = $json->queryResult->parameters->id;
+	if($method == 'POST'){ 
+		$requestBody = file_get_contents('php://input'); //Recebe o conteúdo em JSON da requisição
+		$json = json_decode($requestBody); //Decodifica de JSON para texto	
+		$id = $json->queryResult->parameters->id; //Extrai apenas o ID, seguindo a estrutura de arrays que está no texto.
 		
 		if($id != NULL){
 			
-			$postdata = json_encode(array(
+			$orchestratorData = json_encode(array(
 				'id' => $id,
 				'source' => 'password-reset-sap-robot-demo'
-			));
+			)); // Este é o conteúdo do JSON da nova requisição que vai ser mandada para o Orchestrator
 			
 			$context = stream_context_create(array(
 				'http'=>array(
-					'method' => 'POST',
-					'header' => 'Content-Type: application/json\r\n',
-					'content' => $postdata
+					'method' => 'POST', //Neste caso, mandamos uma requisição do tipo POST
+					'header' => 'Content-Type: application/json\r\n', //Qual o conteúdo que está sendo mandado, no caso um JSON
+					'content' => $orchestratorData //O conteúdo
 				)
-			));
-			$req = file_get_contents('https://my-php-tester.herokuapp.com/', FALSE, $context);
-			echo $req;	
+			)); //Este é o contexto, ou seja, toda a informação que vai ser passada pela requisição
 			
-			$response = new \stdClass();
+			$req = file_get_contents('https://my-php-tester.herokuapp.com/', FALSE, $context); //Envia a requisição para o link e armazena na variável a resposta.
 			
-			$response->fulfillmentText = $id;
-			$response->source = 'webhook';
+			$response = array(
+				'fulfillmentText' => $id, //Aqui vai a mensagem que irá aparecer na conversa com o Chatbot
+				'source' => 'webhook'
+			);//Esta variável é a resposta final, ou seja, a que vai para o DialogFlow. A resposta que o usuário vai obter após o processo.
 		}
 		
 		else{
-			$response->fulfillmentText = 'ID nÃ£o recebido';
-			$response->source = 'webhook';
+			$response = array(
+				'fulfillmentText' => 'ID não recebido',
+				'source' => 'webhook'
+			); //Caso o ID não seja alcançado.
 		}
 		
-		//echo json_encode($response);
+		echo json_encode($response); //Codifica para JSON e manda para o DialogFlow.
 		
 	}
 	else{
-		echo 'NÃ£o foi recebido uma requisiÃ§Ã£o do tipo POST';
+		echo 'Não foi recebido uma requisição do tipo POST';
 	}
 ?>
