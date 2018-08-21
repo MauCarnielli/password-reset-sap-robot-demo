@@ -7,11 +7,15 @@
 		$id = $json->queryResult->parameters->id; //Extrai apenas o ID, seguindo a estrutura de arrays que está no texto.
 		
 		if($id != NULL){
-			
 			$orchestratorData = json_encode(array(
-				'id' => $id,
-				'source' => 'password-reset-sap-robot-demo'
-			)); // Este é o conteúdo do JSON da nova requisição que vai ser mandada para o Orchestrator
+				'startInfo' => array(
+					"ReleaseKey": "Insira a chave aqui",
+					"Strategy": "All",
+					"RobotIds": [],
+					"NoOfRobots": 0
+				)
+			)); // Este é o conteúdo do JSON da nova requisição que vai ser mandada para o Orchestrator para iniciar o Job
+				// Referência: https://orchestrator.uipath.com/v2018.2/reference#section-starting-a-job
 			
 			$context = stream_context_create(array(
 				'http'=>array(
@@ -21,22 +25,22 @@
 				)
 			)); //Este é o contexto, ou seja, toda a informação que vai ser passada pela requisição
 			
-			$req = file_get_contents('https://my-php-tester.herokuapp.com/', FALSE, $context); //Envia a requisição para o link e armazena na variável a resposta.
+			$req = file_get_contents('url_do_orchestrator', FALSE, $context); //Envia a requisição para o link e armazena na variável a resposta.
 			
-			$response = array(
-				'fulfillmentText' => $id, //Aqui vai a mensagem que irá aparecer na conversa com o Chatbot
+			$responseDialog = array(
+				'fulfillmentText' => 'ID Recebido é -> '.$id, //Aqui vai a mensagem que irá aparecer na conversa com o Chatbot
 				'source' => 'webhook'
 			);//Esta variável é a resposta final, ou seja, a que vai para o DialogFlow. A resposta que o usuário vai obter após o processo.
 		}
 		
 		else{
-			$response = array(
+			$responseDialog = array(
 				'fulfillmentText' => 'ID não recebido',
 				'source' => 'webhook'
 			); //Caso o ID não seja alcançado.
 		}
 		
-		echo json_encode($response); //Codifica para JSON e manda para o DialogFlow.
+		echo json_encode($responseDialog); //Codifica para JSON e manda para o DialogFlow.
 		
 	}
 	else{
