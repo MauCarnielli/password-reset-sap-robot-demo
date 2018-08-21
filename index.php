@@ -25,7 +25,7 @@
 				// )
 			// )); 
 			
-			//$req = file_get_contents('url_do_orchestrator', FALSE, $context); //Envia a requisição para o link e armazena na variável a resposta.
+			$req = file_get_contents('url_do_orchestrator', FALSE, $context); //Envia a requisição para o link e armazena na variável a resposta.
 			
 			$responseDialog = array( //Esta variável é a resposta final, ou seja, a que vai para o DialogFlow. A resposta que o usuário vai obter após o processo.
 				'fulfillmentText' => 'ID Recebido é -> '.$id, //Aqui vai a mensagem que irá aparecer na conversa com o Chatbot
