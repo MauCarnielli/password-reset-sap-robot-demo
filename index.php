@@ -9,10 +9,10 @@
 			
 			$orchestratorData = json_encode( // Este é o conteúdo do JSON da nova requisição que vai ser mandada para o Orchestrator para iniciar o Job
 				'startInfo' => array(
-					"ReleaseKey": "Insira a chave aqui",
-					"Strategy": "All",
-					"RobotIds": [],
-					"NoOfRobots": 0 // Referência: https://orchestrator.uipath.com/v2018.2/reference#section-starting-a-job
+					'ReleaseKey': 'Insira a chave aqui',
+					'Strategy': 'All',
+					'RobotIds': [],
+					'NoOfRobots': 0 // Referência: https://orchestrator.uipath.com/v2018.2/reference#section-starting-a-job
 				)
 			); 
 				
