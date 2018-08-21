@@ -28,6 +28,7 @@
 			$req = file_get_contents('url_do_orchestrator/odata/Jobs/UiPath.Server.Configuration.OData.StartJobs', FALSE, $context); //Envia a requisição para o link e armazena na variável a resposta.
 			
 			$responseDialog = array( //Esta variável é a resposta final, ou seja, a que vai para o DialogFlow. A resposta que o usuário vai obter após o processo.
+				'speech' =>  'ID Recebido é -> '.$id. '. Requisição completa.',
 				'displayText' => 'ID Recebido é -> '.$id. '. Requisição completa.', //Aqui vai a mensagem que irá aparecer na conversa com o Chatbot
 				'source' => 'webhook'
 			);
@@ -35,6 +36,7 @@
 		
 		else{
 			$responseDialog = array( //Caso o ID não seja alcançado.
+				'speech' =>  'ID Recebido é -> '.$id. '. Requisição completa.',
 				'displayText' => 'ID não recebido',
 				'source' => 'webhook'
 			); 
