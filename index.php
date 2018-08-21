@@ -12,7 +12,7 @@
 					'ReleaseKey': 'Insira a chave aqui',
 					'Strategy': 'All',
 					'RobotIds': [],
-					'NoOfRobots': 0 // Referência: https://orchestrator.uipath.com/v2018.2/reference#section-starting-a-job
+					'NoOfRobots': '0' // Referência: https://orchestrator.uipath.com/v2018.2/reference#section-starting-a-job
 				)
 			); 
 				
